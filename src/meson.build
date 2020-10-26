@@ -1,5 +1,6 @@
 # Listing files to compile
 sources = files (
     'Application.vala',
-    'Settings.vala'
+    'Dialogs/Settings.vala',
+    'Dialogs/About.vala'
 )

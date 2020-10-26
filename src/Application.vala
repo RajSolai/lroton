@@ -26,7 +26,8 @@ public class Application : Gtk.Application {
     Gtk.Image connection_icon;
     Gtk.Label connection_label;
     Gtk.Label connection_status;
-    Settings settings;
+    Dialogs.Settings settings;
+    Dialogs.About about;
     bool status;
   
 
@@ -39,6 +40,7 @@ public class Application : Gtk.Application {
 
     protected override void activate () {
         clearConnection();
+        //connectionStatus();
         // stylesheet
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("/com/github/rajsolai/lroton/stylesheet.css");
@@ -46,10 +48,15 @@ public class Application : Gtk.Application {
         //
         var config_btn = new Gtk.Button.with_label("Configure");
         config_btn.clicked.connect (()=>{
-            new Settings();
+            settings = new Dialogs.Settings();
+        });
+        var about_btn = new Gtk.Button.with_label("About");
+        about_btn.clicked.connect (()=>{
+            about = new Dialogs.About();
         });
         var menu_list = new Gtk.Grid();
         menu_list.add(config_btn);
+        menu_list.attach_next_to(about_btn,config_btn,Gtk.PositionType.BOTTOM,1,1);
         menu_list.show_all();
         var menu_popover = new Gtk.Popover(null);
         menu_popover.add(menu_list);
@@ -100,6 +107,22 @@ public class Application : Gtk.Application {
         out protonvpn_stderr,
         out protonvpn_status);
         status = false;
+    }
+
+    private void connectionStatus(){
+        string protonvpn_stdout = "";
+        string protonvpn_stderr = "";
+        int protonvpn_status = 0;
+        try {
+            Process.spawn_command_line_sync ("sudo protonvpn s",
+                out protonvpn_stdout,
+                out protonvpn_stderr,
+                out protonvpn_status);
+            stdout.printf(protonvpn_stdout);
+            stdout.printf(protonvpn_stderr);
+        } catch (Error e) {
+            stdout.printf(e.message);
+        }
     }
 
     private void fastConnection(){
