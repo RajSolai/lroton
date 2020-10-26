@@ -2,5 +2,6 @@
 sources = files (
     'Application.vala',
     'Dialogs/Settings.vala',
-    'Dialogs/About.vala'
+    'Dialogs/About.vala',
+    'Dialogs/Error.vala'
 )

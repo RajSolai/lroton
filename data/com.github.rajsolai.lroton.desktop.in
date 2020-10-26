@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=Name
-Comment=Comment
-GenericName=GenericName
+Name=Lroton
+Comment=Vala Wrapper for Proton VPN
+GenericName=Lroton
 Exec=com.github.rajsolai.lroton %U
 Icon=com.github.rajsolai.lroton
 Terminal=false
-Categories=Utility;GTK;Development;
-Keywords=Develop
+Categories=Utility;GTK;Network;Internet;
+Keywords=Internet,VPN

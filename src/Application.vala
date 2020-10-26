@@ -28,6 +28,7 @@ public class Application : Gtk.Application {
     Gtk.Label connection_status;
     Dialogs.Settings settings;
     Dialogs.About about;
+    Dialogs.Error errorDialog;
     bool status;
   
 
@@ -129,9 +130,10 @@ public class Application : Gtk.Application {
         string protonvpn_stdout = "";
         string protonvpn_stderr = "";
         int protonvpn_status = 0;
+        string user_name = GLib.Environment.get_user_name();
         if (status) {
             try {
-                Process.spawn_command_line_sync ("sudo protonvpn d",
+                Process.spawn_command_line_sync ("pkexec --user "+ user_name +" sudo protonvpn d",
                 out protonvpn_stdout,
                 out protonvpn_stderr,
                 out protonvpn_status);
@@ -139,21 +141,39 @@ public class Application : Gtk.Application {
                 connect_btn.set_image(new Gtk.Image.from_gicon (new ThemedIcon ("network-vpn"),Gtk.IconSize.LARGE_TOOLBAR));
                 connection_icon.gicon = new ThemedIcon ("emblem-unreadable");
                 connection_label.set_text("Your Connection is Not Secure");
-                connection_status.set_text("");    
+                connection_status.set_text("");
+                stdout.printf(protonvpn_stderr);    
             } catch (Error e) {
                 stdout.printf(e.message);
             }
         }else{
             try {
-                Process.spawn_command_line_sync ("sudo protonvpn c -f",
+                Process.spawn_command_line_sync ("pkexec --user "+ user_name +" sudo protonvpn c -r",
                 out protonvpn_stdout,
                 out protonvpn_stderr,
                 out protonvpn_status);
                 status = true;
-                connect_btn.set_image(new Gtk.Image.from_gicon (new ThemedIcon ("process-stop"),Gtk.IconSize.LARGE_TOOLBAR));    
-                connection_icon.gicon = new ThemedIcon ("emblem-readonly");
-                connection_label.set_text("Your Connection is Secure");
-                connection_status.set_text(protonvpn_stdout);   
+                if (protonvpn_stderr == "") {
+                    connect_btn.set_image(new Gtk.Image.from_gicon (new ThemedIcon ("process-stop"),Gtk.IconSize.LARGE_TOOLBAR));    
+                    connection_icon.gicon = new ThemedIcon ("emblem-readonly");
+                    connection_label.set_text("Your Connection is Secure");
+                    connection_status.set_text(protonvpn_stdout);
+                    stdout.printf("%d",protonvpn_status);
+                }else{
+                    stdout.printf("the err is %s",protonvpn_stderr);
+                    stdout.printf("the err code is %d",protonvpn_status);
+                    switch (protonvpn_status) {
+                        case 32256:
+                            errorDialog = new Dialogs.Error(32256);
+                            break;
+                        case 256:
+                            errorDialog = new Dialogs.Error(256);
+                            break;
+                        default:
+                            stdout.printf("vanakkam");
+                            break;
+                    }
+                }   
             } catch (Error e) {
                 stdout.printf(e.message);
             }
