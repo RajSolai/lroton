@@ -1,6 +1,6 @@
 # Lroton 
 
-Adds your awesome app description here!
+Simple , Minimal , Lightweight Vala GUI for Proton VPN for Elementary OS
 
 ![Main Screen on Lroton](./data/screenshots/mainscreen.png "Main Screen of Lroton")
 
