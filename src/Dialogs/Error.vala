@@ -18,6 +18,12 @@ public class Dialogs.Error : Gtk.Dialog {
 			error_title = new Gtk.Label("Proton VPN Missing");
 			error_link = "Install Protonvpn";
 			error_message = new Gtk.Label(error_message_text);	
+		}else if (code == 404) {
+			error_message_text = "Proton VPN Profile not configured";
+			error_link_text = "https://github.com/RajSolai/lroton/issues";
+			error_title = new Gtk.Label("Configure Profile");
+			error_link = "Cog/gear Icon in header bar -> configure";
+			error_message = new Gtk.Label(error_message_text);
 		}else{
 			error_message_text = "Error Message Occured";
 			error_link_text = "https://github.com/RajSolai/lroton/issues";

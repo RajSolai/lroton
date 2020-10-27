@@ -3,9 +3,7 @@
  */
 public class Dialogs.Settings : Gtk.Dialog {
 
-	public Settings() {}
-
-	construct{
+	public Settings() {
 		var box = this.get_content_area();
 		this.set_default_size(250, 150);
 		var inputbox = new Gtk.Box(Gtk.Orientation.VERTICAL,5);

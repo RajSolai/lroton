@@ -26,6 +26,7 @@ public class Application : Gtk.Application {
     Gtk.Image connection_icon;
     Gtk.Label connection_label;
     Gtk.Label connection_status;
+    Services.Configuration configuration;
     Dialogs.Settings settings;
     Dialogs.About about;
     Dialogs.Error errorDialog;
@@ -41,6 +42,7 @@ public class Application : Gtk.Application {
 
     protected override void activate () {
         clearConnection();
+        configuration = new Services.Configuration("solairaj","0","password");
         //connectionStatus();
         // stylesheet
         var provider = new Gtk.CssProvider ();
@@ -163,7 +165,10 @@ public class Application : Gtk.Application {
                 out protonvpn_stdout,
                 out protonvpn_stderr,
                 out protonvpn_status);
-                if (protonvpn_stderr == "") {
+                stdout.printf(protonvpn_stdout);
+                if (protonvpn_status == 256 && protonvpn_stdout == "[!] There has been no profile initialized yet. Please run 'protonvpn init'.") {
+                    errorDialog = new Dialogs.Error(404);
+                }else if (protonvpn_status == 0 && protonvpn_stderr == ""){
                     connect_btn.set_image(new Gtk.Image.from_gicon (new ThemedIcon ("process-stop"),Gtk.IconSize.LARGE_TOOLBAR));    
                     connection_icon.gicon = new ThemedIcon ("emblem-readonly");
                     connection_label.set_text("Your Connection is Secure");
@@ -191,7 +196,6 @@ public class Application : Gtk.Application {
             }
         }
     }
-
 
     public static int main (string[] args) {
         var app = new Application ();
