@@ -2,5 +2,7 @@
 <gresources>
   <gresource prefix="/com/github/rajsolai/lroton">
     <file alias="stylesheet.css" compressed="false">stylesheet.css</file>
+    <file alias="lroton-fast-connect.svg">resources/lroton-fast-connect.svg</file>
+    <file alias="lroton-random-connect.svg">resources/lroton-random-connect.svg</file>
   </gresource>
 </gresources>
