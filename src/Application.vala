@@ -126,6 +126,17 @@ public class Application : Gtk.Application {
         }
     }
 
+    private string get_path_of_cli(){
+        string cli_stdout = "";
+        string cli_stderr = "";
+        int cli_status = 0;
+        Process.spawn_command_line_sync ("which protonvpn",
+        out cli_stdout,
+        out cli_stderr,
+        out cli_status);
+        return cli_stdout;
+    }
+
     private void fastConnection(){
         string protonvpn_stdout = "";
         string protonvpn_stderr = "";
@@ -133,7 +144,7 @@ public class Application : Gtk.Application {
         string user_name = GLib.Environment.get_user_name();
         if (status) {
             try {
-                Process.spawn_command_line_sync ("pkexec --user "+ user_name +" sudo protonvpn d",
+                Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" d",
                 out protonvpn_stdout,
                 out protonvpn_stderr,
                 out protonvpn_status);
@@ -148,17 +159,18 @@ public class Application : Gtk.Application {
             }
         }else{
             try {
-                Process.spawn_command_line_sync ("pkexec --user "+ user_name +" sudo protonvpn c -r",
+                Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" c -r",
                 out protonvpn_stdout,
                 out protonvpn_stderr,
                 out protonvpn_status);
-                status = true;
                 if (protonvpn_stderr == "") {
                     connect_btn.set_image(new Gtk.Image.from_gicon (new ThemedIcon ("process-stop"),Gtk.IconSize.LARGE_TOOLBAR));    
                     connection_icon.gicon = new ThemedIcon ("emblem-readonly");
                     connection_label.set_text("Your Connection is Secure");
                     connection_status.set_text(protonvpn_stdout);
+                    status = true;
                     stdout.printf("%d",protonvpn_status);
+                    stdout.printf(protonvpn_stderr);
                 }else{
                     stdout.printf("the err is %s",protonvpn_stderr);
                     stdout.printf("the err code is %d",protonvpn_status);

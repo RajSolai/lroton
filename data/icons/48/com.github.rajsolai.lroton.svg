@@ -1,91 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="8.4666672mm"
-   height="8.4666672mm"
-   viewBox="0 0 8.4666673 8.4666673"
-   version="1.1"
    id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="lroton-48.svg">
+   version="1.1"
+   viewBox="0 0 12.699999 12.699999"
+   height="48"
+   width="48">
   <defs
      id="defs2">
     <filter
-       style="color-interpolation-filters:sRGB"
-       inkscape:label="Drop Shadow"
-       id="filter4620">
+       id="filter4620"
+       style="color-interpolation-filters:sRGB">
       <feFlood
-         flood-opacity="0.6"
-         flood-color="rgb(35,43,43)"
+         id="feFlood4610"
          result="flood"
-         id="feFlood4610" />
+         flood-color="rgb(35,43,43)"
+         flood-opacity="0.6" />
       <feComposite
-         in="flood"
-         in2="SourceGraphic"
-         operator="in"
+         id="feComposite4612"
          result="composite1"
-         id="feComposite4612" />
+         operator="in"
+         in2="SourceGraphic"
+         in="flood" />
       <feGaussianBlur
-         in="composite1"
-         stdDeviation="1"
+         id="feGaussianBlur4614"
          result="blur"
-         id="feGaussianBlur4614" />
+         stdDeviation="1"
+         in="composite1" />
       <feOffset
-         dx="0.105263"
-         dy="1"
+         id="feOffset4616"
          result="offset"
-         id="feOffset4616" />
+         dy="1"
+         dx="0.105263" />
       <feComposite
-         in="SourceGraphic"
-         in2="offset"
-         operator="over"
+         id="feComposite4618"
          result="composite2"
-         id="feComposite4618" />
+         operator="over"
+         in2="offset"
+         in="SourceGraphic" />
     </filter>
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="2.56"
-     inkscape:cx="12.084918"
-     inkscape:cy="50.147054"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="0"
-     inkscape:window-y="30"
-     inkscape:window-maximized="1"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0">
-    <inkscape:grid
-       type="xygrid"
-       id="grid833"
-       originx="-34.492466"
-       originy="-188.40135" />
-    <sodipodi:guide
-       position="19.74711,17.973604"
-       orientation="0,1"
-       id="guide4646"
-       inkscape:locked="false" />
-  </sodipodi:namedview>
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -99,52 +57,51 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-34.492473,-100.13194)">
+     transform="translate(-34.492472,-95.898607)"
+     id="layer1">
     <g
-       id="g5294"
-       transform="matrix(0.24806203,0,0,0.24806203,25.9362,81.659416)">
+       style="opacity:1"
+       transform="matrix(0.38834952,0,0,0.38834952,20.871285,66.650442)"
+       id="g833">
       <rect
-         ry="1.0001251"
-         rx="1.0001251"
-         y="74.599648"
-         x="34.624763"
-         height="33.866665"
-         width="33.866665"
+         style="fill:#3fc26c;fill-opacity:1;stroke:#3fa06c;stroke-width:0.21125646;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect4552"
-         style="fill:#3fc26c;fill-opacity:1;stroke:#3fa06c;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         width="27.040827"
+         height="27.040827"
+         x="37.905392"
+         y="78.144859"
+         rx="1.8520833"
+         ry="1.8520833" />
       <g
-         style="filter:url(#filter4620)"
-         transform="matrix(0.79731863,0,0,0.79731863,4.2605061,18.232648)"
-         id="g831">
+         id="g831"
+         transform="matrix(0.62653096,0,0,0.62653096,14.451233,33.77949)"
+         style="filter:url(#filter4620)">
         <g
            id="g4577">
           <circle
-             r="2.6458333"
-             cy="101.63578"
-             cx="61.602192"
+             style="fill:#fafafa;fill-opacity:1;stroke:#fafafa;stroke-width:0.16877457;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
              id="path4518"
-             style="fill:#fafafa;fill-opacity:1;stroke:#fafafa;stroke-width:0.16877457;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+             cx="61.602192"
+             cy="101.63578"
+             r="2.6458333" />
           <circle
-             r="2.6458333"
-             cy="90.068375"
-             cx="48.845314"
+             style="fill:#fafafa;fill-opacity:1;stroke:#fafafa;stroke-width:0.16877457;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
              id="path4518-3"
-             style="fill:#fafafa;fill-opacity:1;stroke:#fafafa;stroke-width:0.16877457;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+             cx="48.845314"
+             cy="90.068375"
+             r="2.6458333" />
           <circle
-             r="2.6458333"
-             cy="83.146095"
-             cx="65.870377"
+             style="fill:#fafafa;fill-opacity:1;stroke:#fafafa;stroke-width:0.16877457;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
              id="path4518-3-6"
-             style="fill:#fafafa;fill-opacity:1;stroke:#fafafa;stroke-width:0.16877457;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+             cx="65.870377"
+             cy="83.146095"
+             r="2.6458333" />
           <circle
-             r="10.63147"
-             cy="91.190903"
-             cx="59.509365"
+             style="fill:none;fill-opacity:1;stroke:#fafafa;stroke-width:2.11666656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
              id="path4550"
-             style="fill:none;fill-opacity:1;stroke:#fafafa;stroke-width:2.11666656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+             cx="59.509365"
+             cy="91.190903"
+             r="10.63147" />
         </g>
       </g>
     </g>

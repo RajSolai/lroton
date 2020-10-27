@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    id="svg8"
    version="1.1"
-   viewBox="0 0 4.2333332 4.2333332"
-   height="4.2333331mm"
-   width="4.2333331mm">
+   viewBox="0 0 4.233333 4.233333"
+   height="16"
+   width="16">
   <defs
      id="defs2">
     <filter
@@ -57,23 +57,24 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-34.492472,-104.36527)"
+     transform="translate(-34.492472,-104.36528)"
      id="layer1">
     <g
-       transform="matrix(0.12403101,0,0,0.12403101,30.214336,95.129011)"
-       id="g5294">
+       style="opacity:1"
+       transform="matrix(0.13592233,0,0,0.13592233,29.619223,94.022589)"
+       id="g833">
       <rect
-         style="fill:#3fc26c;fill-opacity:1;stroke:#3fa06c;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#3fc26c;fill-opacity:1;stroke:#3fa06c;stroke-width:0.21125646;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect4552"
-         width="33.866665"
-         height="33.866665"
-         x="34.624763"
-         y="74.599648"
-         rx="1.0001251"
-         ry="1.0001251" />
+         width="27.040827"
+         height="27.040827"
+         x="37.905392"
+         y="78.144859"
+         rx="1.8520833"
+         ry="1.8520833" />
       <g
          id="g831"
-         transform="matrix(0.79731863,0,0,0.79731863,4.2605061,18.232648)"
+         transform="matrix(0.62653096,0,0,0.62653096,14.451233,33.77949)"
          style="filter:url(#filter4620)">
         <g
            id="g4577">
