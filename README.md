@@ -2,7 +2,7 @@
 
 Adds your awesome app description here!
 
-(maybe adds a screenshot, people loves screenshots!)
+![Main Screen on Lroton](./data/screenshots/mainscreen.png "Main Screen of Lroton")
 
 ## Get it from the elementary OS AppCenter!
 
