@@ -20,22 +20,13 @@
 */
 
 public class Application : Gtk.Application {
-    Gtk.Button random_connect_btn;
-    Gtk.Button connect_btn;
-    Gtk.Button settings_btn;
-    Gtk.Image connection_icon;
-    Gtk.Label connection_label;
-    Gtk.Label connection_status;
     Gtk.Stack main_stack;
     Services.Protonvpn protonvpn = new Services.Protonvpn();
-    Dialogs.Settings settings;
     Dialogs.About about;
     Dialogs.Error errorDialog;
     Widgets.Welcome welcome;
     Widgets.ConnectedBox connection;
-    bool status;
     string vpn_status = "";
-
 
     public Application () {
         Object (
@@ -45,24 +36,21 @@ public class Application : Gtk.Application {
     }
 
     protected override void activate () {
+        weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
+        default_theme.add_resource_path ("/com/github/rajsolai/lroton");
+
         // stylesheet
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("/com/github/rajsolai/lroton/stylesheet.css");
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         
-        var config_btn = new Gtk.Button.with_label("Configure");
-        config_btn.clicked.connect (()=>{
-            settings = new Dialogs.Settings();
-        });
-
         var about_btn = new Gtk.Button.with_label("About");
         about_btn.clicked.connect (()=>{
             about = new Dialogs.About();
         });
 
         var menu_list = new Gtk.Grid();
-        menu_list.add(config_btn);
-        menu_list.attach_next_to(about_btn,config_btn,Gtk.PositionType.BOTTOM,1,1);
+        menu_list.add(about_btn);
         menu_list.show_all();
 
         var menu_popover = new Gtk.Popover(null);
@@ -118,64 +106,56 @@ public class Application : Gtk.Application {
     }
 
     private void fastConnection(){
-        try {
-                if(protonvpn.connect_fast_server()){
-                    vpn_status = protonvpn.protonvpn_stdout;
-                    main_stack.visible_child_name = "connection_view";
-                    stdout.printf(protonvpn.protonvpn_stdout);
-                    stdout.printf("%d",protonvpn.protonvpn_status);
-                }else{
-                    if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
-                        errorDialog = new Dialogs.Error(404);    
-                    }else{
-                        stdout.printf("the err is %s",protonvpn.protonvpn_stderr);
-                        stdout.printf("the err code is %d",protonvpn.protonvpn_status);
-                        switch (protonvpn.protonvpn_status) {
-                            case 32256:
-                                errorDialog = new Dialogs.Error(32256);
-                                break;
-                            case 256:
-                                errorDialog = new Dialogs.Error(256);
-                                break;
-                            default:
-                                stdout.printf("vanakkam");
-                                break;
-                        }
-                    }
-                }   
-            } catch (Error e) {
-                stdout.printf(e.message);
+        if(protonvpn.connect_fast_server()){
+            vpn_status = protonvpn.protonvpn_stdout;
+            main_stack.visible_child_name = "connection_view";
+            stdout.printf(protonvpn.protonvpn_stdout);
+            stdout.printf("%d",protonvpn.protonvpn_status);
+        }else{
+            if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
+                errorDialog = new Dialogs.Error(404);    
+            }else{
+                stdout.printf("the err is %s",protonvpn.protonvpn_stderr);
+                stdout.printf("the err code is %d",protonvpn.protonvpn_status);
+                switch (protonvpn.protonvpn_status) {
+                    case 32256:
+                        errorDialog = new Dialogs.Error(32256);
+                        break;
+                    case 256:
+                        errorDialog = new Dialogs.Error(256);
+                        break;
+                    default:
+                        stdout.printf("vanakkam");
+                        break;
+                }
             }
+        }   
     }
 
      private void randomConnection(){
-        try {
-                if(protonvpn.connect_random_server()){
-                    main_stack.visible_child_name = "connection_view";
-                    stdout.printf(protonvpn.protonvpn_stdout);
-                    stdout.printf("%d",protonvpn.protonvpn_status);
-                }else{
-                    if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
-                        errorDialog = new Dialogs.Error(404);    
-                    }else{
-                        stdout.printf("the err is %s",protonvpn.protonvpn_stderr);
-                        stdout.printf("the err code is %d",protonvpn.protonvpn_status);
-                        switch (protonvpn.protonvpn_status) {
-                            case 32256:
-                                errorDialog = new Dialogs.Error(32256);
-                                break;
-                            case 256:
-                                errorDialog = new Dialogs.Error(256);
-                                break;
-                            default:
-                                stdout.printf("vanakkam");
-                                break;
-                        }
-                    }
-                }   
-            } catch (Error e) {
-                stdout.printf(e.message);
+        if(protonvpn.connect_random_server()){
+            main_stack.visible_child_name = "connection_view";
+            stdout.printf(protonvpn.protonvpn_stdout);
+            stdout.printf("%d",protonvpn.protonvpn_status);
+        }else{
+            if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
+                errorDialog = new Dialogs.Error(404);    
+            }else{
+                stdout.printf("the err is %s",protonvpn.protonvpn_stderr);
+                stdout.printf("the err code is %d",protonvpn.protonvpn_status);
+                switch (protonvpn.protonvpn_status) {
+                    case 32256:
+                        errorDialog = new Dialogs.Error(32256);
+                        break;
+                    case 256:
+                        errorDialog = new Dialogs.Error(256);
+                        break;
+                    default:
+                        stdout.printf("vanakkam");
+                        break;
+                }
             }
+        }   
     }
 
     public static int main (string[] args) {

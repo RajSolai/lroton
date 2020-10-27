@@ -14,10 +14,14 @@ public class Services.Protonvpn{
         string cli_stdout = "";
         string cli_stderr = "";
         int cli_status = 0;
-        Process.spawn_command_line_sync ("which protonvpn",
-        out cli_stdout,
-        out cli_stderr,
-        out cli_status);
+        try {
+            Process.spawn_command_line_sync ("which protonvpn",
+            out cli_stdout,
+            out cli_stderr,
+            out cli_status);    
+        } catch (Error e) {
+            stdout.printf(e.message);
+        }
         return cli_stdout;
     }
 
@@ -29,41 +33,59 @@ public class Services.Protonvpn{
 
     public bool disconnect_server(){
     	reset_status_vars();
-    	Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" disconnect",
-        out protonvpn_stdout,
-        out protonvpn_stderr,
-        out protonvpn_status);
-        if(protonvpn_status == 0 && protonvpn_stderr == ""){
-        	return true;
-        }else{
-        	return false;
+        bool out = false;
+        try {
+            Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" disconnect",
+            out protonvpn_stdout,
+            out protonvpn_stderr,
+            out protonvpn_status);
+            if(protonvpn_status == 0 && protonvpn_stderr == ""){
+                out = true;
+            }else{
+                out = false;
+            }    
+        } catch (Error e) {
+            stdout.printf(e.message);
         }
+    	return out;
     }
 
 	public bool connect_fast_server(){
 		reset_status_vars();
-		Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -f",
-        out protonvpn_stdout,
-        out protonvpn_stderr,
-        out protonvpn_status);
-        if(protonvpn_status == 0 && protonvpn_stderr == ""){
-        	return true;
-        }else{
-        	return false;
+        bool out = false;
+        try {
+            Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -f",
+            out protonvpn_stdout,
+            out protonvpn_stderr,
+            out protonvpn_status);
+            if(protonvpn_status == 0 && protonvpn_stderr == ""){
+                out = true;
+            }else{
+                out = false;
+            }    
+        } catch (Error e) {
+            stdout.printf(e.message);
         }
+		return out;
 	}
 
 	public bool connect_random_server(){
         reset_status_vars();
-        Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -f",
-        out protonvpn_stdout,
-        out protonvpn_stderr,
-        out protonvpn_status);
-        if(protonvpn_status == 0 && protonvpn_stderr == ""){
-            return true;
-        }else{
-            return false;
+        bool out = false;
+        try {
+            Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -f",
+            out protonvpn_stdout,
+            out protonvpn_stderr,
+            out protonvpn_status);
+            if(protonvpn_status == 0 && protonvpn_stderr == ""){
+                out = true;
+            }else{
+                out = false;
+            }    
+        } catch (Error e) {
+            stdout.printf(e.message);
         }
+        return out;
 	}
 
 	public void connectionStatus(){

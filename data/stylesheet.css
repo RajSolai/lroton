@@ -4,3 +4,13 @@
 textview.view{
 	box-shadow: 2px 2px 2px 2px rgba(0,0,0,.5);
 }
+
+.disconnect_btn {
+    background-color: #c6262e;
+    color: #fff;
+}
+
+.disconnect_btn GtkLabel {
+    background-color: #c6262e;
+    color: #fff;
+}

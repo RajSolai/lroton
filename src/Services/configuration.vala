@@ -22,13 +22,13 @@ public class Services.Configuration {
 	}
 
 	public void save_config(){
-		FileStream stream = FileStream.open ("/home/solairaj/sample.cfg", "w");
+		FileStream stream = FileStream.open (config_dir+"sample.cfg", "w");
 		stream.puts(config_string);
 	}
 
 	public void save_passfile(){
-		FileStream stream = FileStream.open ("/home/solairaj/samplepass", "w");
-		stream.puts(config_string);
+		FileStream stream = FileStream.open (config_dir+"samplepass", "w");
+		stream.puts(pass_string);
 	}
 	
 }
