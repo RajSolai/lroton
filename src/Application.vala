@@ -26,7 +26,7 @@ public class Application : Gtk.Application {
     Gtk.Image connection_icon;
     Gtk.Label connection_label;
     Gtk.Label connection_status;
-    Services.Configuration configuration;
+    Services.Protonvpn protonvpn = new Services.Protonvpn();
     Dialogs.Settings settings;
     Dialogs.About about;
     Dialogs.Error errorDialog;
@@ -41,9 +41,6 @@ public class Application : Gtk.Application {
     }
 
     protected override void activate () {
-        clearConnection();
-        configuration = new Services.Configuration("solairaj","0","password");
-        //connectionStatus();
         // stylesheet
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("/com/github/rajsolai/lroton/stylesheet.css");
@@ -101,94 +98,48 @@ public class Application : Gtk.Application {
         main_window.show_all ();
     }
 
-    private void clearConnection(){
-        string protonvpn_stdout = "";
-        string protonvpn_stderr = "";
-        int protonvpn_status = 0;
-        Process.spawn_command_line_sync ("sudo protonvpn d",
-        out protonvpn_stdout,
-        out protonvpn_stderr,
-        out protonvpn_status);
-        status = false;
-    }
-
-    private void connectionStatus(){
-        string protonvpn_stdout = "";
-        string protonvpn_stderr = "";
-        int protonvpn_status = 0;
-        try {
-            Process.spawn_command_line_sync ("sudo protonvpn s",
-                out protonvpn_stdout,
-                out protonvpn_stderr,
-                out protonvpn_status);
-            stdout.printf(protonvpn_stdout);
-            stdout.printf(protonvpn_stderr);
-        } catch (Error e) {
-            stdout.printf(e.message);
-        }
-    }
-
-    private string get_path_of_cli(){
-        string cli_stdout = "";
-        string cli_stderr = "";
-        int cli_status = 0;
-        Process.spawn_command_line_sync ("which protonvpn",
-        out cli_stdout,
-        out cli_stderr,
-        out cli_status);
-        return cli_stdout;
-    }
-
     private void fastConnection(){
-        string protonvpn_stdout = "";
-        string protonvpn_stderr = "";
-        int protonvpn_status = 0;
-        string user_name = GLib.Environment.get_user_name();
         if (status) {
             try {
-                Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" d",
-                out protonvpn_stdout,
-                out protonvpn_stderr,
-                out protonvpn_status);
+                protonvpn.disconnect_server();
                 status = false;
                 connect_btn.set_image(new Gtk.Image.from_gicon (new ThemedIcon ("network-vpn"),Gtk.IconSize.LARGE_TOOLBAR));
                 connection_icon.gicon = new ThemedIcon ("emblem-unreadable");
-                connection_label.set_text("Your Connection is Not Secure");
+                connection_label.set_text("Not Connection to VPN Services");
                 connection_status.set_text("");
-                stdout.printf(protonvpn_stderr);    
+                stdout.printf(protonvpn.protonvpn_stderr);    
             } catch (Error e) {
                 stdout.printf(e.message);
             }
         }else{
             try {
-                Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" c -r",
-                out protonvpn_stdout,
-                out protonvpn_stderr,
-                out protonvpn_status);
-                stdout.printf(protonvpn_stdout);
-                if (protonvpn_status == 256 && protonvpn_stdout == "[!] There has been no profile initialized yet. Please run 'protonvpn init'.") {
-                    errorDialog = new Dialogs.Error(404);
-                }else if (protonvpn_status == 0 && protonvpn_stderr == ""){
+                if(protonvpn.connect_fast_server()){
                     connect_btn.set_image(new Gtk.Image.from_gicon (new ThemedIcon ("process-stop"),Gtk.IconSize.LARGE_TOOLBAR));    
                     connection_icon.gicon = new ThemedIcon ("emblem-readonly");
                     connection_label.set_text("Your Connection is Secure");
-                    connection_status.set_text(protonvpn_stdout);
+                    connection_status.set_text(protonvpn.protonvpn_stdout);
                     status = true;
-                    stdout.printf("%d",protonvpn_status);
-                    stdout.printf(protonvpn_stderr);
+                    stdout.printf(protonvpn.protonvpn_stdout);
+                    stdout.printf("%d",protonvpn.protonvpn_status);
+                    stdout.printf(protonvpn.protonvpn_stderr);
                 }else{
-                    stdout.printf("the err is %s",protonvpn_stderr);
-                    stdout.printf("the err code is %d",protonvpn_status);
-                    switch (protonvpn_status) {
-                        case 32256:
-                            errorDialog = new Dialogs.Error(32256);
-                            break;
-                        case 256:
-                            errorDialog = new Dialogs.Error(256);
-                            break;
-                        default:
-                            stdout.printf("vanakkam");
-                            break;
+                    stdout.printf("the err is %s",protonvpn.protonvpn_stdout);
+                    if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
+                        errorDialog = new Dialogs.Error(404);    
+                    }else{
+                        stdout.printf("the err is %s",protonvpn.protonvpn_stderr);
+                        stdout.printf("the err code is %d",protonvpn.protonvpn_status);
+                        switch (protonvpn.protonvpn_status) {
+                            case 32256:
+                                errorDialog = new Dialogs.Error(32256);
+                                break;
+                            case 256:
+                                errorDialog = new Dialogs.Error(256);
+                                break;
+                            default:
+                                stdout.printf("vanakkam");
+                                break;
+                        }
                     }
                 }   
             } catch (Error e) {

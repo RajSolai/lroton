@@ -2,6 +2,7 @@
  * 
  */
 public class Dialogs.Settings : Gtk.Dialog {
+	Services.Configuration configuration;
 
 	public Settings() {
 		var box = this.get_content_area();
