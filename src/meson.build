@@ -5,5 +5,7 @@ sources = files (
     'Dialogs/About.vala',
     'Dialogs/Error.vala',
     'Services/configuration.vala',
-    'Services/protonvpn.vala'
+    'Services/protonvpn.vala',
+    'Widgets/welcome.vala',
+    'Widgets/connectedbox.vala'
 )

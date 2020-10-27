@@ -53,8 +53,17 @@ public class Services.Protonvpn{
         }
 	}
 
-	public void connect_random_server(){
-
+	public bool connect_random_server(){
+        reset_status_vars();
+        Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -f",
+        out protonvpn_stdout,
+        out protonvpn_stderr,
+        out protonvpn_status);
+        if(protonvpn_status == 0 && protonvpn_stderr == ""){
+            return true;
+        }else{
+            return false;
+        }
 	}
 
 	public void connectionStatus(){
