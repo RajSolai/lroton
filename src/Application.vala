@@ -24,7 +24,6 @@ public class Application : Gtk.Application {
     Services.Protonvpn protonvpn = new Services.Protonvpn();
     Dialogs.About about;
     Dialogs.Error errorDialog;
-    string _string;
     Widgets.Welcome welcome;
     Widgets.ConnectedBox connection;
     Widgets.ConfigBox configbox;
