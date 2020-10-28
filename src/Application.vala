@@ -24,6 +24,7 @@ public class Application : Gtk.Application {
     Services.Protonvpn protonvpn = new Services.Protonvpn();
     Dialogs.About about;
     Dialogs.Error errorDialog;
+    string _string;
     Widgets.Welcome welcome;
     Widgets.ConnectedBox connection;
     Widgets.ConfigBox configbox;
@@ -37,6 +38,7 @@ public class Application : Gtk.Application {
     }
 
     protected override void activate () {
+
         weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
         default_theme.add_resource_path ("/com/github/rajsolai/lroton");
 
@@ -132,6 +134,9 @@ public class Application : Gtk.Application {
                     case 32256:
                         errorDialog = new Dialogs.Error(32256);
                         break;
+                    case 32512:
+                        errorDialog = new Dialogs.Error(256);
+                        break;
                     case 256:
                         errorDialog = new Dialogs.Error(256);
                         break;
@@ -159,6 +164,9 @@ public class Application : Gtk.Application {
                         errorDialog = new Dialogs.Error(32256);
                         break;
                     case 256:
+                        errorDialog = new Dialogs.Error(256);
+                        break;
+                    case 32512:
                         errorDialog = new Dialogs.Error(256);
                         break;
                     default:

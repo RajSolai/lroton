@@ -8,13 +8,12 @@ schemadir = path.join(environ['MESON_INSTALL_PREFIX'], 'share', 'glib-2.0', 'sch
 datadir = path.join(prefix, 'share')
 desktop_database_dir = path.join(datadir, 'applications')
 
+def install_protonvpn():
+	system('python3 -m pip install protonvpn-cli')
+
 # install protonvpn
 if system('which protonvpn') != 0:	
 	install_protonvpn()
-
-
-def install_protonvpn():
-	system('sudo -H python3 -m pip install protonvpn-cli')
 
 
 if not environ.get('DESTDIR'):
