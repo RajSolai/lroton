@@ -4,11 +4,11 @@ Simple , Minimal , Lightweight Vala GUI for Proton VPN for Elementary OS
 
 ![Main Screen on Lroton](./data/screenshots/mainscreen.png "Main Screen of Lroton")
 
-## Get it from the elementary OS AppCenter!
+<!-- ## Get it from the elementary OS AppCenter!
 
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/Lroton)
 
-This app is available on the elementary OS AppCenter.
+This app is available on the elementary OS AppCenter. -->
 
 # Install it from source
 

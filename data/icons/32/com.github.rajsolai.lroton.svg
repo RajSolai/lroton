@@ -5,6 +5,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    id="svg8"
    version="1.1"
    viewBox="0 0 8.466666 8.466666"
@@ -12,6 +13,17 @@
    width="32">
   <defs
      id="defs2">
+    <linearGradient
+       id="linearGradient838">
+      <stop
+         id="stop834"
+         offset="0"
+         style="stop-color:#68b723;stop-opacity:1" />
+      <stop
+         id="stop836"
+         offset="1"
+         style="stop-color:#3a9104;stop-opacity:1" />
+    </linearGradient>
     <filter
        id="filter4620"
        style="color-interpolation-filters:sRGB">
@@ -43,6 +55,25 @@
          in2="offset"
          in="SourceGraphic" />
     </filter>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="108.35207"
+       x2="36.512501"
+       y1="104.64791"
+       x1="36.512501"
+       id="linearGradient840"
+       xlink:href="#linearGradient838" />
+    <filter
+       height="2.4400001"
+       y="-0.72000003"
+       width="1.1028571"
+       x="-0.051428571"
+       id="filter848"
+       style="color-interpolation-filters:sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur850"
+         stdDeviation="0.079374999" />
+    </filter>
   </defs>
   <metadata
      id="metadata5">
@@ -59,22 +90,29 @@
   <g
      transform="translate(-34.492472,-100.13194)"
      id="layer1">
+    <ellipse
+       transform="matrix(1.6839379,0,0,1.6839379,-24.70388,-74.296344)"
+       ry="0.13229166"
+       rx="1.8520833"
+       cy="108.11403"
+       cx="37.667473"
+       id="path842"
+       style="opacity:1;fill:#333333;fill-opacity:0.58823529;stroke:none;stroke-width:0.27457109;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter848)" />
     <g
-       style="opacity:1"
-       transform="matrix(0.25242719,0,0,0.25242719,25.744534,81.226466)"
-       id="g833">
+       transform="matrix(1.8571428,0,0,1.8571428,-29.262592,-93.386903)"
+       id="g1467">
       <rect
-         style="fill:#3fc26c;fill-opacity:1;stroke:#3fa06c;stroke-width:0.21125646;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:url(#linearGradient840);fill-opacity:1;stroke:#206b00;stroke-width:0.02871447;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect4552"
-         width="27.040827"
-         height="27.040827"
-         x="37.905392"
-         y="78.144859"
-         rx="1.8520833"
-         ry="1.8520833" />
+         width="3.6754522"
+         height="3.6754522"
+         x="34.771412"
+         y="104.64422"
+         rx="0.25173947"
+         ry="0.25173947" />
       <g
          id="g831"
-         transform="matrix(0.62653096,0,0,0.62653096,14.451233,33.77949)"
+         transform="matrix(0.08515955,0,0,0.08515955,31.583468,98.613976)"
          style="filter:url(#filter4620)">
         <g
            id="g4577">
