@@ -22,7 +22,13 @@ public class Dialogs.Error : Gtk.Dialog {
 			error_message_text = "Proton VPN Profile not configured";
 			error_link_text = "https://github.com/RajSolai/lroton/issues";
 			error_title = new Gtk.Label("Configure Profile");
-			error_link = "Cog/gear Icon in header bar -> configure";
+			error_link = "Cog/gear Icon in Welcome Page -> configure";
+			error_message = new Gtk.Label(error_message_text);
+		}else if(code == 32256){
+			error_message_text = "Please allow the Permissons for VPN connect and disconnect services";
+			error_link_text = "https://man7.org/linux/man-pages/man1/su.1.html";
+			error_title = new Gtk.Label("Permisson Denied");
+			error_link = "Read more here";
 			error_message = new Gtk.Label(error_message_text);
 		}else{
 			error_message_text = "Error Message Occured";

@@ -101,8 +101,7 @@ public class Application : Gtk.Application {
         });
 
         connection.disconnect_signal.connect(()=>{
-            protonvpn.disconnect_server();
-            main_stack.visible_child_name = "welcome_view";
+            vpnDisconnection();
         });
         
         configbox.back_to_welcome.connect(()=>{
@@ -116,6 +115,14 @@ public class Application : Gtk.Application {
         main_window.default_width = 500;
         main_window.title = "Lroton";
         main_window.show_all ();
+    }
+
+    private void vpnDisconnection(){
+        if (protonvpn.disconnect_server()) {
+            main_stack.visible_child_name = "welcome_view";
+        }else {
+            errorDialog = new Dialogs.Error(32256);
+        }
     }
 
     private void vpnConnection(int mode){
