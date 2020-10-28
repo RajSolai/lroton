@@ -9,5 +9,6 @@ sources = files (
     'Services/protonvpn.vala',
     
     'Widgets/welcome.vala',
-    'Widgets/connectedbox.vala'
+    'Widgets/connectedbox.vala',
+    'Widgets/configbox.vala'
 )

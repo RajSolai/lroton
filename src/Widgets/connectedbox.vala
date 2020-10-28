@@ -4,9 +4,9 @@
 public class Widgets.ConnectedBox : Gtk.EventBox {
 
 	public ConnectedBox(string status) {
-		stdout.printf("Status in ConnectedBox is %s",status);
+                
+        var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 
-		var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
         var connection_icon = new Gtk.Image ();
         connection_icon.gicon = new ThemedIcon ("emblem-readonly");
         connection_icon.pixel_size = 128;
@@ -21,7 +21,7 @@ public class Widgets.ConnectedBox : Gtk.EventBox {
         var button_box = new Gtk.ButtonBox(Gtk.Orientation.VERTICAL);
         button_box.set_layout(Gtk.ButtonBoxStyle.START);
         button_box.set_spacing(5);
-		button_box.add(disconnect_btn);
+	button_box.add(disconnect_btn);
 
         var connection_label = new Gtk.Label("Your Connection is Secure");
         connection_label.get_style_context().add_class("h2");

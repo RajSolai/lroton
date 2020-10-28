@@ -7,10 +7,14 @@ public class Services.Configuration {
 	string config_dir = GLib.Environment.get_home_dir()+"/.pvpn-cli";
 
 	public Configuration(string username,string tier,string password) {
-		init_config(username,tier);
-		init_passfile(username,password);
-		save_config();
-		save_passfile();
+		
+		stdout.printf(config_dir);
+		
+			init_config(username,tier);
+			init_passfile(username,password);
+			save_config();
+			save_passfile();
+
 	}
 
 	public void init_config(string username,string tier){
@@ -22,13 +26,14 @@ public class Services.Configuration {
 	}
 
 	public void save_config(){
-		FileStream stream = FileStream.open (config_dir+"sample.cfg", "w");
+		FileStream stream = FileStream.open (config_dir+"/pvpn-cli.cfg", "w");
 		stream.puts(config_string);
 	}
 
 	public void save_passfile(){
-		FileStream stream = FileStream.open (config_dir+"samplepass", "w");
+		FileStream stream = FileStream.open (config_dir+"/pvpnpass", "w");
 		stream.puts(pass_string);
 	}
+
 	
 }

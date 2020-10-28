@@ -26,6 +26,7 @@ public class Application : Gtk.Application {
     Dialogs.Error errorDialog;
     Widgets.Welcome welcome;
     Widgets.ConnectedBox connection;
+    Widgets.ConfigBox configbox;
     string vpn_status = "";
 
     public Application () {
@@ -44,6 +45,8 @@ public class Application : Gtk.Application {
         provider.load_from_resource ("/com/github/rajsolai/lroton/stylesheet.css");
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         
+        var main_window = new Gtk.ApplicationWindow (this);
+
         var about_btn = new Gtk.Button.with_label("About");
         about_btn.clicked.connect (()=>{
             about = new Dialogs.About();
@@ -61,20 +64,22 @@ public class Application : Gtk.Application {
         menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
         menu_button.popover = menu_popover;        
         
-
+        
         var hb = new Gtk.HeaderBar();
         hb.get_style_context ().add_class ("default-decoration");
         hb.set_show_close_button(true);
         hb.pack_end(menu_button);
         
-
+      
         welcome = new Widgets.Welcome();
         connection = new Widgets.ConnectedBox(vpn_status);
+        configbox = new Widgets.ConfigBox();
         main_stack = new Gtk.Stack();
         main_stack.expand = true;
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
         main_stack.add_named (welcome, "welcome_view");
         main_stack.add_named (connection, "connection_view");
+        main_stack.add_named (configbox, "config_view");
 
         welcome.selected.connect((index)=>{
             switch (index) {
@@ -83,6 +88,9 @@ public class Application : Gtk.Application {
                     break;
                 case 1:
                     randomConnection();
+                    break;
+                case 2:
+                    main_stack.visible_child_name = "config_view";
                     break;
                 default:
                     stdout.printf("");
@@ -94,8 +102,11 @@ public class Application : Gtk.Application {
             protonvpn.disconnect_server();
             main_stack.visible_child_name = "welcome_view";
         });
+        
+        configbox.back_to_welcome.connect(()=>{
+            main_stack.visible_child_name = "welcome_view";
+        });
 
-        var main_window = new Gtk.ApplicationWindow (this);
         main_window.get_style_context ();
         main_window.set_titlebar(hb);
         main_window.add(main_stack);
