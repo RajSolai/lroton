@@ -37,6 +37,7 @@ Services.Configuration configuration;
 		tier_combobox.append_text("Visionary");
 		var login_button = new Gtk.Button.with_label("Login");
 		var back_button = new Gtk.Button.with_label("Back");
+		back_button.get_style_context().add_class("back_btn");
 		username_entry.placeholder_text = "Collection of Alphabets A-Z,a-z";
 		password_entry.placeholder_text = "Collection of Alphabets A-Z,a-z";
 

@@ -10,6 +10,11 @@ textview.view{
     color: #fff;
 }
 
+.back_btn {
+    background-color: #c6262e;
+    color: #fff;	
+}
+
 .disconnect_btn GtkLabel {
     background-color: #c6262e;
     color: #fff;

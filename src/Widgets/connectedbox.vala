@@ -3,7 +3,7 @@
  */
 public class Widgets.ConnectedBox : Gtk.EventBox {
 
-	public ConnectedBox(string status) {
+	public ConnectedBox() {
                 
         var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
 
@@ -11,7 +11,6 @@ public class Widgets.ConnectedBox : Gtk.EventBox {
         connection_icon.gicon = new ThemedIcon ("emblem-readonly");
         connection_icon.pixel_size = 128;
 
-        var connection_status = new Gtk.Label(status);
         var disconnect_btn = new Gtk.Button.with_label("Disconnect");
 		disconnect_btn.get_style_context ().add_class ("disconnect_btn");
         disconnect_btn.clicked.connect(()=>{
@@ -28,7 +27,6 @@ public class Widgets.ConnectedBox : Gtk.EventBox {
 
         main_box.pack_start(connection_icon,false,false,80);
         main_box.pack_start(connection_label,true,false,10);
-        main_box.pack_start(connection_status,false,false,10);
         main_box.pack_start(button_box,false,false,10);
 
         add(main_box);

@@ -10,5 +10,6 @@ sources = files (
     
     'Widgets/welcome.vala',
     'Widgets/connectedbox.vala',
-    'Widgets/configbox.vala'
+    'Widgets/configbox.vala',
+    'Widgets/applicationheader.vala'
 )

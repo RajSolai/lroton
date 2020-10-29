@@ -9,6 +9,7 @@ datadir = path.join(prefix, 'share')
 desktop_database_dir = path.join(datadir, 'applications')
 
 def install_protonvpn():
+	system('sudo apt install -y openvpn dialog python3-pip python3-setuptools')
 	system('python3 -m pip install protonvpn-cli')
 
 # install protonvpn

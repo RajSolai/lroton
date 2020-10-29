@@ -52,6 +52,7 @@ public class Services.Protonvpn{
 
 	public bool connect_fast_server(){
 		reset_status_vars();
+        onstart();
         bool out = false;
         try {
             Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -f",
@@ -71,6 +72,7 @@ public class Services.Protonvpn{
 
 	public bool connect_random_server(){
         reset_status_vars();
+        onstart();
         bool out = false;
         try {
             Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -f",
@@ -103,5 +105,7 @@ public class Services.Protonvpn{
 	        stdout.printf(e.message);
 	    }
     }
+
+    public signal void onstart();
 	
 }

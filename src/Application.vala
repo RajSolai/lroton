@@ -22,13 +22,13 @@
 public class Application : Gtk.Application {
     Gtk.Stack main_stack;
     Services.Protonvpn protonvpn = new Services.Protonvpn();
-    Dialogs.About about;
     Dialogs.Error errorDialog;
     Widgets.Welcome welcome;
     Widgets.ConnectedBox connection;
     Widgets.ConfigBox configbox;
-    GLib.Notification app_notification = new GLib.Notification("Lroton");
-    string vpn_status = "";
+    Widgets.ApplicationHeader hb;
+    GLib.Notification app_notification_success = new GLib.Notification("Connection Success !");
+    GLib.Notification app_notification_conn = new GLib.Notification("Connecting");
 
     public Application () {
         Object (
@@ -47,36 +47,14 @@ public class Application : Gtk.Application {
         provider.load_from_resource ("/com/github/rajsolai/lroton/stylesheet.css");
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         
-        var main_window = new Gtk.ApplicationWindow (this);
-
-        var about_btn = new Gtk.Button.with_label("About");
-        about_btn.clicked.connect (()=>{
-            about = new Dialogs.About();
-        });
-
-        var menu_list = new Gtk.Grid();
-        menu_list.add(about_btn);
-        menu_list.show_all();
-
-        var menu_popover = new Gtk.Popover(null);
-        menu_popover.add(menu_list);
-
-        var menu_button = new Gtk.MenuButton ();
-        menu_button.set_can_focus (false);
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-        menu_button.popover = menu_popover;        
+        var main_window = new Gtk.ApplicationWindow (this);                
         
-        
-        var hb = new Gtk.HeaderBar();
-        hb.get_style_context ().add_class ("default-decoration");
-        hb.set_show_close_button(true);
-        hb.pack_end(menu_button);
-        
-      
+        hb = new Widgets.ApplicationHeader();
         welcome = new Widgets.Welcome();
-        connection = new Widgets.ConnectedBox(vpn_status);
+        connection = new Widgets.ConnectedBox();
         configbox = new Widgets.ConfigBox();
         main_stack = new Gtk.Stack();
+
         main_stack.expand = true;
         main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
         main_stack.add_named (welcome, "welcome_view");
@@ -108,6 +86,12 @@ public class Application : Gtk.Application {
             main_stack.visible_child_name = "welcome_view";
         });
 
+        protonvpn.onstart.connect(()=>{
+            stdout.printf("the connection process is started");
+            app_notification_conn.set_body("Hold on! Connecting to VPN Servers");
+            send_notification("lroton_connection",app_notification_conn);
+        });
+
         main_window.get_style_context ();
         main_window.set_titlebar(hb);
         main_window.add(main_stack);
@@ -136,12 +120,11 @@ public class Application : Gtk.Application {
         }
         
         if(cmd){
-            vpn_status = protonvpn.protonvpn_stdout;
             main_stack.visible_child_name = "connection_view";
             stdout.printf(protonvpn.protonvpn_stdout);
             stdout.printf("%d",protonvpn.protonvpn_status);
-            app_notification.set_body(protonvpn.protonvpn_stdout);
-            send_notification("lroton",app_notification);
+            app_notification_success.set_body(protonvpn.protonvpn_stdout);
+            send_notification("lroton",app_notification_success);
         }else{
             if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
                 errorDialog = new Dialogs.Error(404);    
