@@ -1,0 +1,13 @@
+Package: com.github.rajsolai.lroton-dbgsym
+Package-Type: ddeb
+Source: com.github.rajsolai.lroton
+Version: 0.1ubuntu1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Solai Raj <msraj085@gmail.com>
+Installed-Size: 125
+Depends: com.github.rajsolai.lroton (= 0.1ubuntu1)
+Section: debug
+Priority: optional
+Description: debug symbols for com.github.rajsolai.lroton
+Build-Ids: c9ac94fb32bfdf86033a6817943b2b35bc52f6d9
