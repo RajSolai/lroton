@@ -10,7 +10,7 @@ Simple , Minimal , Lightweight Vala GUI for Proton VPN for Elementary OS
 <img src="./res/lrotondownload.svg">
 </img>
 </a>
-
+<i>you need <a href="https://protonvpn.com/">protonvpn</a> account to use this app</i>
 
 ![Main Screen on Lroton](./data/screenshots/mainscreen.png "Main Screen of Lroton")
 
