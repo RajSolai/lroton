@@ -75,7 +75,7 @@ public class Services.Protonvpn{
         onstart();
         bool out = false;
         try {
-            Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -f",
+            Process.spawn_command_line_sync ("pkexec "+get_path_of_cli()+" connect -r",
             out protonvpn_stdout,
             out protonvpn_stderr,
             out protonvpn_status);
