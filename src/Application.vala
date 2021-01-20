@@ -73,7 +73,7 @@ public class Application : Gtk.Application {
                     main_stack.visible_child_name = "config_view";
                     break;
                 default:
-                    stdout.printf("");
+                    print("Invalid Option");
                     break;
             }
         });
@@ -87,7 +87,7 @@ public class Application : Gtk.Application {
         });
 
         protonvpn.onstart.connect(()=>{
-            stdout.printf("the connection process is started");
+            print("the connection process is started");
             app_notification_conn.set_body("Hold on! Connecting to VPN Servers");
             send_notification("lroton_connection",app_notification_conn);
         });
@@ -116,21 +116,21 @@ public class Application : Gtk.Application {
         }else if (mode == 2) {
             cmd = protonvpn.connect_random_server();
         }else {
-            stdout.printf("");
+            print("");
         }
-        
+        print(cmd.to_string());
         if(cmd){
             main_stack.visible_child_name = "connection_view";
-            stdout.printf(protonvpn.protonvpn_stdout);
-            stdout.printf("%d",protonvpn.protonvpn_status);
+            print(protonvpn.protonvpn_stdout);
+            print("%d",protonvpn.protonvpn_status);
             app_notification_success.set_body(protonvpn.protonvpn_stdout);
             send_notification("lroton",app_notification_success);
         }else{
             if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
                 errorDialog = new Dialogs.Error(404);    
             }else{
-                stdout.printf("the err is %s",protonvpn.protonvpn_stderr);
-                stdout.printf("the err code is %d",protonvpn.protonvpn_status);
+                print("the err is %s",protonvpn.protonvpn_stderr);
+                print("the err code is %d",protonvpn.protonvpn_status);
                 switch (protonvpn.protonvpn_status) {
                     case 32256:
                         errorDialog = new Dialogs.Error(32256);
@@ -142,7 +142,7 @@ public class Application : Gtk.Application {
                         errorDialog = new Dialogs.Error(256);
                         break;
                     default:
-                        stdout.printf("vanakkam");
+                        print("other error found\n");
                         break;
                 }
             }
