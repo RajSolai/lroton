@@ -25,7 +25,8 @@ public class Services.Protonvpn{
             }
             return cli_stdout;
         });
-        string path = 
+        string path = gpc_thread.join();
+        return path;
     }
 
     private void reset_status_vars(){
