@@ -95,7 +95,7 @@ public class Application : Gtk.Application {
         main_window.get_style_context ();
         main_window.set_titlebar(hb);
         main_window.add(main_stack);
-        main_window.default_height = 400;
+        main_window.default_height = 450;
         main_window.default_width = 500;
         main_window.title = "Lroton";
         main_window.show_all ();
