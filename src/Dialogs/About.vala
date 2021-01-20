@@ -15,8 +15,6 @@ public class Dialogs.About : Gtk.AboutDialog {
                 this.hide_on_delete ();
             }
         });
-        //this.run();
-        //this.destroy();
         this.present();
 	}
 
