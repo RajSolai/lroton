@@ -9,7 +9,8 @@ Simple , Minimal , Lightweight Vala GUI for Proton VPN for Elementary OS
 <a id="raw-url" href="https://github.com/RajSolai/lroton/releases/download/0.1.0/com.github.rajsolai.lroton_0.1ubuntu1_amd64.deb">
 <img src="./res/lrotondownload.svg">
 </img>
-</a>
+</a> 
+</br>
 <i>you need <a href="https://protonvpn.com/">protonvpn</a> account to use this app</i>
 
 ![Main Screen on Lroton](./data/screenshots/mainscreen.png "Main Screen of Lroton")
