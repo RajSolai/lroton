@@ -5,9 +5,9 @@ Version: 0.1ubuntu1
 Auto-Built-Package: debug-symbols
 Architecture: amd64
 Maintainer: Solai Raj <msraj085@gmail.com>
-Installed-Size: 130
+Installed-Size: 133
 Depends: com.github.rajsolai.lroton (= 0.1ubuntu1)
 Section: debug
 Priority: optional
 Description: debug symbols for com.github.rajsolai.lroton
-Build-Ids: c63f176cea74718aeed2eb1055e9d8da84fbd205
+Build-Ids: 81827553cef4bce39c322cc7cdf257da1eb339d1

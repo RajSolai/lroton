@@ -2,7 +2,7 @@ Package: com.github.rajsolai.lroton
 Version: 0.1ubuntu1
 Architecture: amd64
 Maintainer: Solai Raj <msraj085@gmail.com>
-Installed-Size: 162
+Installed-Size: 166
 Depends: libc6 (>= 2.4), libglib2.0-0 (>= 2.39.4), libgranite5 (>= 0.4.1), libgtk-3-0 (>= 3.16.2)
 Section: x11
 Priority: optional

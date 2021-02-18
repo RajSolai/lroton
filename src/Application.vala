@@ -28,7 +28,6 @@ public class Application : Gtk.Application {
     Widgets.ConfigBox configbox;
     Widgets.ApplicationHeader hb;
     GLib.Notification app_notification_success = new GLib.Notification("Connection Success !");
-    GLib.Notification app_notification_conn = new GLib.Notification("Connecting");
 
     public Application () {
         Object (
@@ -88,8 +87,8 @@ public class Application : Gtk.Application {
 
         protonvpn.onstart.connect(()=>{
             print("the connection process is started");
-            app_notification_conn.set_body("Hold on! Connecting to VPN Servers");
-            send_notification("lroton_connection",app_notification_conn);
+            //app_notification_conn.set_body("Hold on! Connecting to VPN Servers");
+            //send_notification("lroton_connection",app_notification_conn);
         });
 
         main_window.get_style_context ();
@@ -110,45 +109,49 @@ public class Application : Gtk.Application {
     }
 
     private void vpnConnection(int mode){
-        bool cmd = false;
-        if (mode == 1) {
-            cmd = protonvpn.connect_fast_server();
-        }else if (mode == 2) {
-            cmd = protonvpn.connect_random_server();
-        }else {
-            print("");
-        }
-        print(cmd.to_string());
-        if(cmd){
-            main_stack.visible_child_name = "connection_view";
-            print(protonvpn.protonvpn_stdout);
-            print("%d",protonvpn.protonvpn_status);
-            app_notification_success.set_body(protonvpn.protonvpn_stdout);
-            send_notification("lroton",app_notification_success);
-        }else{
-            if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
-                errorDialog = new Dialogs.Error(404);    
+        var connc_thread = new Thread<int>("main_connection",()=>{
+             bool cmd = false;
+            if (mode == 1) {
+                cmd = protonvpn.connect_fast_server();
+            }else if (mode == 2) {
+                cmd = protonvpn.connect_random_server();
+            }else {
+                print("");
+            }
+            print(cmd.to_string());
+            if(cmd){
+                main_stack.visible_child_name = "connection_view";
+                print(protonvpn.protonvpn_stdout);
+                print("%d",protonvpn.protonvpn_status);
+                app_notification_success.set_body(protonvpn.protonvpn_stdout);
+                send_notification("lroton",app_notification_success);
             }else{
-                print("the err is %s",protonvpn.protonvpn_stderr);
-                print("the err code is %d",protonvpn.protonvpn_status);
-                switch (protonvpn.protonvpn_status) {
-                    case 32256:
-                        errorDialog = new Dialogs.Error(32256);
-                        break;
-                    case 32512:
-                        errorDialog = new Dialogs.Error(256);
-                        break;
-                    case 256:
-                        errorDialog = new Dialogs.Error(256);
-                        break;
-                    default:
-                        print("other error found\n");
-                        break;
+                if (protonvpn.protonvpn_status == 256 && protonvpn.protonvpn_stdout != ""){
+                    errorDialog = new Dialogs.Error(404);    
+                }else{
+                    print("the err is %s",protonvpn.protonvpn_stderr);
+                    print("the err code is %d",protonvpn.protonvpn_status);
+                    switch (protonvpn.protonvpn_status) {
+                        case 32256:
+                            errorDialog = new Dialogs.Error(32256);
+                            break;
+                        case 32512:
+                            errorDialog = new Dialogs.Error(256);
+                            break;
+                        case 256:
+                            errorDialog = new Dialogs.Error(256);
+                            break;
+                        default:
+                            print("other error found\n");
+                            break;
+                    }
                 }
             }
-        }   
+            return 0;          
+        });
+        connc_thread.join();
     }
-
+// 
    
     public static int main (string[] args) {
         var app = new Application ();

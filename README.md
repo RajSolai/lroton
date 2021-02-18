@@ -61,3 +61,8 @@ sudo ninja Lroton-pot
 # to regenerate and propagate changes to every po file
 sudo ninja Lroton-update-po
 ```
+## Build debian package
+
+```bash
+dpkg-buildpackage -rfakeroot -b -uc -us
+```
