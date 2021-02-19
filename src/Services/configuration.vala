@@ -41,7 +41,7 @@ public class Services.Configuration {
     }
 
     public void init_config(string username, string tier) {
-        config_string = "[USER]\nusername = " + username + "\ntier = " + tier + "\ndefault_protocol = udp\ninitialized = 1\ndns_leak_protection = 1\ncustom_dns = None\ncheck_update_interval = 3\napi_domain = https://api.protonvpn.ch\nkillswitch = 0\nsplit_tunnel = 0\n\n[metadata]\nlast_api_pull = 0\nlast_update_check = " + get_current_epoch_time () ;
+        config_string = "[USER]\nusername = " + username + "\ntier = " + tier + "\ndefault_protocol = tcp\ninitialized = 1\ndns_leak_protection = 1\ncustom_dns = None\ncheck_update_interval = 3\napi_domain = https://api.protonvpn.ch\nkillswitch = 0\nsplit_tunnel = 0\n\n[metadata]\nlast_api_pull = 0\nlast_update_check = " + get_current_epoch_time () ;
     }
 
     public void init_passfile(string username, string password) {

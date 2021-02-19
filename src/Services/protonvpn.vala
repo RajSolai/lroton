@@ -28,6 +28,14 @@ public class Services.Protonvpn {
 
     }
 
+    private void refresh_pvpn() {
+        try {
+            Process.spawn_command_line_async (get_path_of_cli () + " refresh") ;
+        } catch ( Error e ){
+            stdout.printf (e.message) ;
+        }
+    }
+
     private string get_path_of_cli() {
         var gpc_thread = new Thread<string>("get_path", () => {
             string cli_stdout = "" ;
@@ -77,6 +85,7 @@ public class Services.Protonvpn {
     }
 
     public bool connect_fast_server() {
+        refresh_pvpn () ;
         reset_status_vars () ;
         onstart () ;
         var cdf_thread = new Thread<bool>("connect_fast_server", () => {
@@ -102,6 +111,7 @@ public class Services.Protonvpn {
     }
 
     public bool connect_random_server() {
+        refresh_pvpn () ;
         reset_status_vars () ;
         onstart () ;
         var crs_thread = new Thread<bool>("connect_random", () => {
