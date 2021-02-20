@@ -1,4 +1,4 @@
-# Lroton 
+# Lroton
 
 Simple , Minimal , Lightweight Vala GUI for Proton VPN for Elementary OS
 
@@ -29,14 +29,15 @@ You can of course download and install this app from source.
 
 Ensure you have these dependencies installed
 
-* granite
-* gtk+-3.0
-* switchboard-2.0
+-   granite
+-   gtk+-3.0
+-   switchboard-2.0
+-   python3 , pip (for protonvpn)
 
 ## Install, build and run
 
 ```bash
-# install elementary-sdk, meson and ninja 
+# install elementary-sdk, meson and ninja
 sudo apt install elementary-sdk meson ninja
 # clone repository
 git clone {{repository_url}} Lroton
@@ -61,6 +62,7 @@ sudo ninja Lroton-pot
 # to regenerate and propagate changes to every po file
 sudo ninja Lroton-update-po
 ```
+
 ## Build debian package
 
 ```bash
