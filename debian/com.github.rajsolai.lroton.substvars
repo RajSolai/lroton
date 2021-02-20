@@ -1,3 +1,0 @@
-shlibs:Depends=libc6 (>= 2.4), libglib2.0-0 (>= 2.39.4), libgranite5 (>= 0.4.1), libgtk-3-0 (>= 3.16.2)
-misc:Depends=
-misc:Pre-Depends=

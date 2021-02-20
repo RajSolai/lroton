@@ -1,3 +1,8 @@
 /build
 /raw_icon_work
 /obj-x86_64-linux-gnu
+/debian/.debhelper
+/debian/com.github.rajsolai.lroton
+/debian/files
+/debian/com.github.rajsolai.lroton.debhelper.log
+/debian/com.github.rajsolai.lroton.substvars

@@ -1,8 +1,0 @@
-#!/bin/sh
-
-which protonvpn
-if [ $? -eq 1 ]; then
-    echo "installing protonvpn"
-    sudo apt install -y openvpn dialog python3-pip python3-setuptools
-    python3 -m pip install protonvpn-cli
-fi
