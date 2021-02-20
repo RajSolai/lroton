@@ -6,5 +6,5 @@ GenericName=Lroton
 Exec=com.github.rajsolai.lroton %U
 Icon=com.github.rajsolai.lroton
 Terminal=false
-Categories=Utility;GTK;Network;Internet;
-Keywords=Internet,VPN
+Categories=Network;
+Keywords=Internet;
